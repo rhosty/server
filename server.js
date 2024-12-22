@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 const app = express();
-const SECRET_KEY = 'your_secret_key'; // Use a strong secret key in production
+const SECRET_KEY = 'your_secret_key'; 
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -39,7 +39,7 @@ let db;
 
   // Insert predefined users
   const predefinedUsers = [
-    { username: 'Julia', password: 'IcedMatchLatte' },
+    { username: 'Julia', password: 'IcedMatchaLatte' },
     { username: 'Berni', password: 'Irmithedog' },
   ];
 

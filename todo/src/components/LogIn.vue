@@ -17,7 +17,8 @@ const handleLogin = async () => {
     localStorage.setItem('token', response.data.token)
     router.push('/todo')
   } catch (error) {
-    console.error('Login failed:', error)
+    console.log('Login failed:', error)
+    alert('Login failed. Please try again.')
   }
 }
 
