@@ -39,7 +39,7 @@ let db;
 
   // Insert predefined users
   const predefinedUsers = [
-    { username: 'Julia', password: 'IcedMatchaLatte' },
+    { username: 'Julia', password: 'IcedMatchLatte' },
     { username: 'Berni', password: 'Irmithedog' },
   ];
 

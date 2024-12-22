@@ -1,3 +1,4 @@
+<!-- filepath: /Users/Kulis/server/todo/src/components/LogIn.vue -->
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
@@ -8,9 +9,12 @@ const password = ref('')
 const isRegistering = ref(false)
 const router = useRouter()
 
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'
+console.log('API base URL:', apiBaseUrl)
+
 const handleLogin = async () => {
   try {
-    const response = await axios.post('http://localhost:3000/api/login', {
+    const response = await axios.post(`${apiBaseUrl}/api/login`, {
       username: username.value,
       password: password.value
     })
@@ -24,7 +28,7 @@ const handleLogin = async () => {
 
 const handleRegister = async () => {
   try {
-    await axios.post('http://localhost:3000/api/register', {
+    await axios.post(`${apiBaseUrl}/api/register`, {
       username: username.value,
       password: password.value
     })
