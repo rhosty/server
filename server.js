@@ -6,13 +6,7 @@ const { open } = require('sqlite');
 
 const app = express();
 
-const corsOptions = {
-  origin: 'https://jandb-todo.vercel.app/', 
-  optionsSuccessStatus: 200
-};
-
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -32,8 +26,6 @@ let db;
     )
   `);
 })();
-
-// it works
 
 // Routes
 app.get('/api/tasks', async (req, res) => {
