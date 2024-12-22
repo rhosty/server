@@ -5,6 +5,7 @@ import axios from 'axios'
 const newTodo = ref('')
 const todos = ref([])
 
+
 const fetchTodos = async () => {
   try {
     const response = await axios.get('http://localhost:3000/api/tasks')

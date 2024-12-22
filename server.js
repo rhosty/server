@@ -6,7 +6,13 @@ const { open } = require('sqlite');
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://jandb-todo.vercel.app/', 
+  optionsSuccessStatus: 200
+};
+
+
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
