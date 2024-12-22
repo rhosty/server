@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "run this",
-    "runFrontend" : "npm run dev",
+    "runFrontend" : "cd todo && npm run dev",
     "runBackend" : "node server.js",
     "both" : "concurrently \"npm run runFrontend\" \"npm run runBackend\""
   },
