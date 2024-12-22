@@ -110,7 +110,9 @@ onMounted(() => {
     text-align: center;
   }
   .input-container {
-    margin: 20px 0;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
   }
   
   .todo-list {
@@ -124,6 +126,7 @@ onMounted(() => {
     gap: 10px;
     padding: 10px;
     border-bottom: 1px solid #eee;
+    justify-content: center;
   }
   
   .completed {
@@ -132,7 +135,6 @@ onMounted(() => {
   }
   
   button {
-    margin-left: auto;
     padding: 5px 10px;
     background-color: #ff4444;
     color: white;
