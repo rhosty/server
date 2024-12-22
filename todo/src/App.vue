@@ -13,6 +13,7 @@ const fetchTodos = async () => {
   } catch (error) {
     console.error('Error fetching todos:', error)
   }
+  console.log(todos.value)
 }
 
 // Add new todo
