@@ -33,6 +33,8 @@ let db;
   `);
 })();
 
+// it works
+
 // Routes
 app.get('/api/tasks', async (req, res) => {
   try {
