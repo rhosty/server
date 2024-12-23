@@ -63,7 +63,7 @@ const authenticateToken = (req, res, next) => {
 };
 
 // Routes
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await db.get('SELECT * FROM users WHERE username = ?', [username]);
@@ -84,7 +84,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.get('/users', authenticateToken, async (req, res) => {
+app.get('/api/users', authenticateToken, async (req, res) => {
   try {
     const users = await db.all('SELECT id, username FROM users');
     res.json(users);
@@ -93,7 +93,7 @@ app.get('/users', authenticateToken, async (req, res) => {
   }
 });
 
-app.get('/tasks', authenticateToken, async (req, res) => {
+app.get('/api/tasks', authenticateToken, async (req, res) => {
   try {
     const tasks = await db.all('SELECT * FROM tasks');
     res.json(tasks);
@@ -102,7 +102,7 @@ app.get('/tasks', authenticateToken, async (req, res) => {
   }
 });
 
-app.post('/tasks', authenticateToken, async (req, res) => {
+app.post('/api/tasks', authenticateToken, async (req, res) => {
   try {
     const { text, completed } = req.body;
     const result = await db.run(
@@ -118,7 +118,7 @@ app.post('/tasks', authenticateToken, async (req, res) => {
   }
 });
 
-app.put('/tasks/:id', authenticateToken, async (req, res) => {
+app.put('/api/tasks/:id', authenticateToken, async (req, res) => {
   try {
     const { text, completed } = req.body;
     await db.run(
@@ -131,7 +131,7 @@ app.put('/tasks/:id', authenticateToken, async (req, res) => {
   }
 });
 
-app.delete('/tasks/:id', authenticateToken, async (req, res) => {
+app.delete('/api/tasks/:id', authenticateToken, async (req, res) => {
   try {
     await db.run('DELETE FROM tasks WHERE id = ?', req.params.id);
     res.json({ message: 'Task deleted successfully!' });

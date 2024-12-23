@@ -13,9 +13,9 @@ const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'
 console.log('API base URL:', apiBaseUrl)
 
 const handleLogin = async () => {
-  console.log(`${apiBaseUrl}/login`)
+  console.log(`${apiBaseUrl}/api/login`)
   try {
-    const response = await axios.post(`${apiBaseUrl}/login`, {
+    const response = await axios.post(`${apiBaseUrl}/api/login`, {
       username: username.value,
       password: password.value
     })
@@ -29,7 +29,7 @@ const handleLogin = async () => {
 
 const handleRegister = async () => {
   try {
-    await axios.post(`${apiBaseUrl}/register`, {
+    await axios.post(`${apiBaseUrl}/api/register`, {
       username: username.value,
       password: password.value
     })

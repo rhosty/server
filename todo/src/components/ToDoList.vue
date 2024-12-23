@@ -17,7 +17,7 @@ const fetchTodos = async () => {
       router.push('/')
       return
     }
-    const response = await axios.get(`${apiBaseUrl}/tasks`, {
+    const response = await axios.get(`${apiBaseUrl}/api/tasks`, {
       headers: {
         'Authorization': token
       }
@@ -37,7 +37,7 @@ const addTodo = async () => {
   
   try {
     const token = localStorage.getItem('token')
-    await axios.post(`${apiBaseUrl}/tasks`, {
+    await axios.post(`${apiBaseUrl}/api/tasks`, {
       text: newTodo.value,
       completed: false,
     }, {
@@ -58,7 +58,7 @@ const addTodo = async () => {
 const deleteTodo = async (id) => {
   try {
     const token = localStorage.getItem('token')
-    await axios.delete(`${apiBaseUrl}/tasks/${id}`, {
+    await axios.delete(`${apiBaseUrl}/api/tasks/${id}`, {
       headers: {
         'Authorization': token
       }
@@ -76,7 +76,7 @@ const deleteTodo = async (id) => {
 const toggleTodo = async (id, todo) => {
   try {
     const token = localStorage.getItem('token')
-    await axios.put(`${apiBaseUrl}/tasks/${id}`, {
+    await axios.put(`${apiBaseUrl}/api/tasks/${id}`, {
       ...todo,
       completed: !todo.completed
     }, {
