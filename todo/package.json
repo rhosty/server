@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "runFrontend": "npm run dev",
+    "runBackend": "cd .. && cd api && node index.js",
+    "both": "concurrently \"npm run runFrontend\" \"npm run runBackend\""
   },
   "dependencies": {
     "@vue/cli": "^5.0.8",
