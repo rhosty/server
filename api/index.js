@@ -1,10 +1,10 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const sqlite3 = require('sqlite3').verbose();
-const { open } = require('sqlite');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import sqlite3 from 'sqlite3';
+import { open } from 'sqlite';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 
 const app = express();
 const SECRET_KEY = 'your_secret_key'; 
@@ -142,12 +142,12 @@ app.delete('/api/tasks/:id', authenticateToken, async (req, res) => {
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server is running on port ${port}`);
+// });
 
 app.get("/", (req, res) => res.send("Express on Vercel"));
 
 
 
-module.exports = app;
+export default app;
