@@ -13,6 +13,13 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+console.log("Serverless function loaded on Vercel.");
+
+app.get("/", (req, res) => {
+  console.log("Root route hit.");
+  res.send("Express on Vercel");
+});
+
 
 // Database setup
 let db;
