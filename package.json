@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "run this",
     "runFrontend": "cd todo && npm run dev",
-    "runBackend": "cd api && node index.js",
+    "runBackend": "node index.js",
     "both": "concurrently \"npm run runFrontend\" \"npm run runBackend\""
 
   },
