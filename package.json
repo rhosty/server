@@ -6,10 +6,9 @@
   "scripts": {
     "test": "run this",
     "runFrontend": "cd todo && npm run dev",
-    "runBackend": "node server.js",
-    "both": "concurrently \"npm run runFrontend\" \"npm run runBackend\"",
-    "buildFrontend": "cd todo && npm run build",
-    "build": "npm run buildFrontend"
+    "runBackend": " cd api && node server.js",
+    "both": "concurrently \"npm run runFrontend\" \"npm run runBackend\""
+
   },
   "author": "me",
   "license": "ISC",
