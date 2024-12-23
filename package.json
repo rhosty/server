@@ -2,13 +2,13 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "run this",
     "runFrontend": "cd todo && npm run dev",
     "runBackend": "node server.js",
     "both": "concurrently \"npm run runFrontend\" \"npm run runBackend\""
-    
+
   },
   "author": "me",
   "license": "ISC",
