@@ -13,6 +13,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Serve static files from the Vue frontend app
+app.use(express.static('todo/dist'));
+
 // Database setup
 let db;
 (async () => {
@@ -145,8 +148,11 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
+// All other GET requests not handled before will return the Vue app
+app.get('*', (req, res) => {
+  res.sendFile(__dirname + '/todo/dist/index.html');
+});
+
 app.get("/", (req, res) => res.send("Express on Vercel"));
-
-
 
 module.exports = app;
