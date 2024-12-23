@@ -3,13 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "run this",
     "runFrontend": "cd todo && npm run dev",
     "runBackend": "node index.js",
     "both": "concurrently \"npm run runFrontend\" \"npm run runBackend\""
-
   },
   "author": "me",
   "license": "ISC",
