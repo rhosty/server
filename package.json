@@ -8,6 +8,7 @@
     "runFrontend": "cd todo && npm run dev",
     "runBackend": "node server.js",
     "both": "concurrently \"npm run runFrontend\" \"npm run runBackend\""
+    
   },
   "author": "me",
   "license": "ISC",
