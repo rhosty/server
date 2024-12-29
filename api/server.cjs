@@ -1,10 +1,10 @@
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const sqlite3 = require('sqlite3');
+const { open } = require('sqlite');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 const app = express();
 const SECRET_KEY = 'your_secret_key'; 
@@ -153,12 +153,13 @@ const port = process.env.PORT || 3000;
 //   console.log(`Server is running on port ${port}`);
 // });
 
-<<<<<<<< HEAD:api/index.js
-app.get("/", (req, res) => res.send("Express on Vercel"));
 
-
-
-export default app;
-========
 module.exports = app;
->>>>>>>> origin/restored:api/server.js
+// export default app;
+
+if (require.main === module) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Listening locally on port ${PORT}`);
+  });
+}

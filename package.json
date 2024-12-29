@@ -7,7 +7,7 @@
   "scripts": {
     "test": "run this",
     "runFrontend": "cd todo && npm run dev",
-    "runBackend": "cd api && node index.js",
+    "runBackend": "cd api && node server.cjs",
     "both": "concurrently \"npm run runFrontend\" \"npm run runBackend\""
   },
   "author": "me",
