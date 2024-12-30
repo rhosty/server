@@ -9,7 +9,7 @@ const password = ref('')
 const isRegistering = ref(false)
 const router = useRouter()
 
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'https://serverlienz.netlify.app/'
+const apiBaseUrl = 'https://serverlienz.netlify.app/'
 console.log('API base URL:', apiBaseUrl)
 
 const handleLogin = async () => {
@@ -43,6 +43,7 @@ const handleRegister = async () => {
 
 <template>
   <div class="login-container">
+  berni
     <h1>{{ isRegistering ? 'Register' : 'Login' }}</h1>
     <div class="input-container">
       <input type="text" v-model="username" placeholder="Username" />
