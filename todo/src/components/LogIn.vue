@@ -9,7 +9,7 @@ const password = ref('')
 const isRegistering = ref(false)
 const router = useRouter()
 
-const apiBaseUrl = 'https://serverlienz.netlify.app/'
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'localhost:3000'
 console.log('API base URL:', apiBaseUrl)
 
 const handleLogin = async () => {

@@ -8,7 +8,7 @@ const newTodo = ref('')
 const todos = ref([])
 const router = useRouter()
 
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'https://serverlienz.netlify.app/'
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'localhost:3000'
 
 const fetchTodos = async () => {
   try {
