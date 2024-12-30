@@ -166,3 +166,7 @@ app.listen(port, () => {
 });
 
 module.exports = app;
+
+module.exports = (req, res) => {
+  res.status(200).send('Hello, world!');
+};
