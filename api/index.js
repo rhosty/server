@@ -6,30 +6,13 @@ const { open } = require('sqlite');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-// import express from 'express';
-// import cors from 'cors';
-// import bodyParser from 'body-parser';
-// import sqlite3 from 'sqlite3';
-// import { open } from 'sqlite';
-// import jwt from 'jsonwebtoken';
-// import bcrypt from 'bcryptjs';
-
-const app = express();https://server-olive-tau.vercel.app/
-const SECRET_KEY = 'your_secret_key'; 
+const app = express();
+const SECRET_KEY = 'your_secret_key';
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-console.log("Serverless function loaded on Vercel.");
-
-app.get((req, res) => {
-  console.log("Root route hit.");
-  res.send("testinga");
-});
-
-
-// Database setup
 let db;
 (async () => {
   db = await open({
@@ -53,7 +36,6 @@ let db;
     )
   `);
 
-  // Insert predefined users
   const predefinedUsers = [
     { username: 'Julia', password: 'IcedMatchLatte' },
     { username: 'Berni', password: 'Irmithedog' },
@@ -65,7 +47,6 @@ let db;
   }
 })();
 
-// Middleware to verify JWT
 const authenticateToken = (req, res, next) => {
   const token = req.headers['authorization'];
   if (!token) return res.sendStatus(401);
@@ -77,24 +58,20 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-// Routes
 app.post('/api/login', async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await db.get('SELECT * FROM users WHERE username = ?', [username]);
     if (!user) {
-      console.log('User not found:', username);
       return res.status(401).json({ message: 'Invalid credentials' });
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      console.log('Invalid password for user:', username);
       return res.status(401).json({ message: 'Invalid credentials' });
     }
     const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, { expiresIn: '1h' });
     res.json({ token });
   } catch (err) {
-    console.error('Error during login:', err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -155,18 +132,4 @@ app.delete('/api/tasks/:id', authenticateToken, async (req, res) => {
   }
 });
 
-// export default app;
-
-
-
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
-
 module.exports = app;
-
-module.exports = (req, res) => {
-  res.status(200).send('Hello, world!');
-};
