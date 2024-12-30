@@ -1,8 +1,0 @@
-[build]
-  command = "npm run both"
-  publish = "todo/dist"
-
-[dev]
-  command = "npm run both"
-  targetPort = 5173
-  port = 8888
