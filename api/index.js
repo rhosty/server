@@ -15,35 +15,39 @@ app.use(bodyParser.json());
 
 let db;
 (async () => {
-  db = await open({
-    filename: 'todos.db',
-    driver: sqlite3.Database
-  });
+  try {
+    db = await open({
+      filename: 'todos.db',
+      driver: sqlite3.Database
+    });
 
-  await db.exec(`
-    CREATE TABLE IF NOT EXISTS tasks (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      text TEXT NOT NULL,
-      completed BOOLEAN DEFAULT 0
-    )
-  `);
+    await db.exec(`
+      CREATE TABLE IF NOT EXISTS tasks (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        text TEXT NOT NULL,
+        completed BOOLEAN DEFAULT 0
+      )
+    `);
 
-  await db.exec(`
-    CREATE TABLE IF NOT EXISTS users (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      username TEXT NOT NULL UNIQUE,
-      password TEXT NOT NULL
-    )
-  `);
+    await db.exec(`
+      CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL UNIQUE,
+        password TEXT NOT NULL
+      )
+    `);
 
-  const predefinedUsers = [
-    { username: 'Julia', password: 'IcedMatchLatte' },
-    { username: 'Berni', password: 'Irmithedog' },
-  ];
+    const predefinedUsers = [
+      { username: 'Julia', password: 'IcedMatchLatte' },
+      { username: 'Berni', password: 'Irmithedog' },
+    ];
 
-  for (const user of predefinedUsers) {
-    const hashedPassword = await bcrypt.hash(user.password, 10);
-    await db.run('INSERT OR REPLACE INTO users (username, password) VALUES (?, ?)', [user.username, hashedPassword]);
+    for (const user of predefinedUsers) {
+      const hashedPassword = await bcrypt.hash(user.password, 10);
+      await db.run('INSERT OR REPLACE INTO users (username, password) VALUES (?, ?)', [user.username, hashedPassword]);
+    }
+  } catch (err) {
+    console.error('Database setup error:', err);
   }
 })();
 
@@ -72,6 +76,7 @@ app.post('/api/login', async (req, res) => {
     const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, { expiresIn: '1h' });
     res.json({ token });
   } catch (err) {
+    console.error('Login error:', err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -81,6 +86,7 @@ app.get('/api/users', authenticateToken, async (req, res) => {
     const users = await db.all('SELECT id, username FROM users');
     res.json(users);
   } catch (err) {
+    console.error('Get users error:', err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -90,6 +96,7 @@ app.get('/api/tasks', authenticateToken, async (req, res) => {
     const tasks = await db.all('SELECT * FROM tasks');
     res.json(tasks);
   } catch (err) {
+    console.error('Get tasks error:', err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -106,6 +113,7 @@ app.post('/api/tasks', authenticateToken, async (req, res) => {
       message: 'Task added successfully!' 
     });
   } catch (err) {
+    console.error('Add task error:', err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -119,6 +127,7 @@ app.put('/api/tasks/:id', authenticateToken, async (req, res) => {
     );
     res.json({ message: 'Task updated successfully!' });
   } catch (err) {
+    console.error('Update task error:', err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -128,6 +137,7 @@ app.delete('/api/tasks/:id', authenticateToken, async (req, res) => {
     await db.run('DELETE FROM tasks WHERE id = ?', req.params.id);
     res.json({ message: 'Task deleted successfully!' });
   } catch (err) {
+    console.error('Delete task error:', err);
     res.status(500).json({ error: err.message });
   }
 });
