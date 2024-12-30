@@ -62,6 +62,9 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
+// Handle favicon.ico requests
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
 app.post('/api/login', async (req, res) => {
   try {
     const { username, password } = req.body;
