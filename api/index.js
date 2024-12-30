@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 
 console.log("Serverless function loaded on Vercel.");
 
-app.get("/", (req, res) => {
+app.get((req, res) => {
   console.log("Root route hit.");
   res.send("testinga");
 });
