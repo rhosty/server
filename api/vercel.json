@@ -1,2 +1,28 @@
 
-{ "version": 2, "rewrites": [{ "source": "/(.*)", "destination": "/api" }] }
+
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "api/server.js",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "todo/package.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "todo/dist"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "/api/server.js"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/todo/$1"
+      }
+    ]
+  }
