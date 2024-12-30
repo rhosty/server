@@ -155,6 +155,8 @@ app.delete('/api/tasks/:id', authenticateToken, async (req, res) => {
   }
 });
 
+export default app;
+
 // const port = process.env.PORT || 3000;
 
 // app.listen(port, () => {
