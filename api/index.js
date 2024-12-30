@@ -14,7 +14,7 @@ const bcrypt = require('bcryptjs');
 // import jwt from 'jsonwebtoken';
 // import bcrypt from 'bcryptjs';
 
-const app = express();
+const app = express();https://server-olive-tau.vercel.app/
 const SECRET_KEY = 'your_secret_key'; 
 
 app.use(cors());
